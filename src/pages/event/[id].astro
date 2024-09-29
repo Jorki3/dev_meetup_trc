@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 }
 
 const { event } = Astro.props;
-const { data } = event;
+const { slug, data } = event;
 const { date, img, location, location_url, title } = data;
 
 const { Content } = await render(event);
@@ -24,7 +24,13 @@ const { Content } = await render(event);
 <Layout title={title}>
   <div class="flex flex-col-reverse lg:flex-row lg:space-x-4 w-full">
     <aside class="flex-1">
-      <img src={`/images/${img}`} alt={title} loading="eager" class="w-full" />
+      <img
+        transition:name={`img-${slug}`}
+        src={`/images/${img}`}
+        alt={title}
+        loading="eager"
+        class="w-full"
+      />
     </aside>
 
     <main class="flex-1">
