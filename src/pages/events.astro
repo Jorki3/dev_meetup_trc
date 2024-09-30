@@ -6,6 +6,9 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 const events = await getCollection("events");
+// const sortedEvents = events.sort(
+//   (a, b) => new Date(b.data.date) - new Date(a.data.date)
+// );
 ---
 
 <Layout title="Eventos">
@@ -16,7 +19,16 @@ const events = await getCollection("events");
     {
       events.map((event) => {
         const { slug, data } = event;
-        const { title, date, img, location, location_url } = data;
+        const { title, date, img, location, location_url, hour } = data;
+        const dateUTC = new Date(
+          date.getTime() + date.getTimezoneOffset() * 60000
+        );
+
+        const formattedDate = dateUTC.toLocaleDateString("es-MX", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        });
 
         return (
           <Card classes="transition hover:scale-105">
@@ -25,8 +37,8 @@ const events = await getCollection("events");
 
               <div class="flex flex-row">
                 <p class="flex-1">
-                  <span>Fecha: {date}</span> <br />
-                  {/* <span>Hora: {event.hour}</span> */}
+                  <span>Fecha: {formattedDate}</span> <br />
+                  <span>Hora: {hour}</span>
                 </p>
 
                 <p class="flex-1 text-right">

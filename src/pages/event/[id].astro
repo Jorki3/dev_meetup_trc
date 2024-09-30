@@ -16,7 +16,14 @@ export async function getStaticPaths() {
 
 const { event } = Astro.props;
 const { slug, data } = event;
-const { date, img, location, location_url, title } = data;
+const { date, hour, img, location, location_url, title } = data;
+
+const dateUTC = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+const formattedDate = dateUTC.toLocaleDateString("es-MX", {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+});
 
 const { Content } = await render(event);
 ---
@@ -63,6 +70,76 @@ const { Content } = await render(event);
     </aside>
 
     <main class="flex-1">
+      <div class="flex flex-col sm:flex-row mb-2 space-y-2 sm:space-y-0">
+        <p class="flex-1 flex">
+          <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-week"
+              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"
+              ></path><path d="M16 3v4"></path><path d="M8 3v4"></path><path
+                d="M4 11h16"></path><path d="M8 14v4"></path><path d="M12 14v4"
+              ></path><path d="M16 14v4"></path></svg
+            >
+          </span>
+          {formattedDate}
+        </p>
+
+        <p class="flex-1 flex">
+          <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-clock-hour-7"
+              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path
+                d="M12 12l-2 3"></path><path d="M12 7v5"></path></svg
+            >
+          </span>
+          {hour}
+        </p>
+
+        <p class="flex-1 flex">
+          <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-map-pin"
+              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path><path
+                d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
+              ></path></svg
+            >
+          </span>
+          <a target="_blank" href={location_url}>
+            {location}
+          </a>
+        </p>
+      </div>
+
       <div class="prose prose-invert">
         <Content />
       </div>

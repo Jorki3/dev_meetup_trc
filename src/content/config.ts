@@ -7,7 +7,10 @@ const events = defineCollection({
     img: z.string(),
     location: z.string(),
     location_url: z.string().url(),
-    date: z.string(),
+    date: z.date(),
+    hour: z.string().regex(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/, {
+      message: "La hora debe estar en formato HH:mm (24 horas)",
+    }),
   }),
 });
 
