@@ -1,5 +1,5 @@
 ---
-const { link } = Astro.props;
+const { link, text } = Astro.props;
 const currentUrl = Astro.url.pathname;
 const isActive = currentUrl === link;
 ---
@@ -23,5 +23,5 @@ const isActive = currentUrl === link;
     ${isActive ? "ring-2 ring-indigo-600 text-indigo-600" : ""}`}
   href={link}
 >
-  <slot />
+  {text}
 </a>

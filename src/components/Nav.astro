@@ -1,5 +1,11 @@
 ---
-const title = Astro.url.pathname;
+const path = Astro.url.pathname;
+
+let title = "Eventos"; // Valor por defecto
+
+if (path === "/") title = "Inicio";
+if (path === "/events") title = "Eventos";
+if (path === "/about") title = "Nosotros";
 ---
 
 <nav x-data="{open: false}">
