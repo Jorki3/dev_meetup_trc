@@ -1,16 +1,19 @@
 ---
+import Nav from "./Nav.astro";
 import NavItem from "./NavItem.astro";
 ---
 
-<header class="container mx-auto p-4 font-mono">
-  <h1 class="text-4xl text-center font-black">devs_meetup.trc</h1>
+<div>
+  <header class="container mx-auto p-4 font-mono">
+    <h1 class="text-4xl text-center font-black mb-2">devs_meetup.trc</h1>
 
-  <nav class="flex justify-center mt-4 space-x-2">
-    <NavItem link="/">Inicio</NavItem>
-    <NavItem link="/events">Eventos</NavItem>
-    <NavItem link="/about">Nosotros</NavItem>
-    <NavItem link="https://chat.whatsapp.com/Lrdy2KsIrza8Qc2iR96E3S"
-      >Unete</NavItem
-    >
-  </nav>
-</header>
+    <Nav>
+      <NavItem link="/">Inicio</NavItem>
+      <NavItem link="/events">Eventos</NavItem>
+      <NavItem link="/about">Nosotros</NavItem>
+      <NavItem link="https://chat.whatsapp.com/Lrdy2KsIrza8Qc2iR96E3S"
+        >Unete</NavItem
+      >
+    </Nav>
+  </header>
+</div>
