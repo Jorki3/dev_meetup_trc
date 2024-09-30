@@ -1,0 +1,43 @@
+---
+import Card from "./Card.astro";
+
+const heroSubtitle =
+  "Una comunidad para desarrolladores donde compartimos, colaboramos y aprendemos juntos.";
+const ctaButtonText = "Únete a Nosotros";
+const ctaButtonLink = "https://chat.whatsapp.com/Lrdy2KsIrza8Qc2iR96E3S";
+---
+
+<Card>
+  <div class="container mx-auto px-6 py-16 text-center text-zinc-100">
+    <h1 class="text-5xl font-bold mb-4">
+      Bienvenidos a <span class="font-mono">devs_meetup.trc</span>
+    </h1>
+
+    <p class="text-xl text-gray-300 mb-8">
+      {heroSubtitle}
+    </p>
+
+    <a
+      href={ctaButtonLink}
+      rel="noopener noreferrer"
+      target="_blank"
+      class="px-4
+            py-2
+            text-2xl
+            text-zinc-300
+            
+            hover:ring-2
+            hover:ring-indigo-600
+            hover:text-indigo-600
+            rounded-lg
+            transition
+            ease-in-out
+            hover:ease-in
+            hover:animate-pulse
+            hover:-translate-y-1
+            hover:cursor-pointer"
+    >
+      {ctaButtonText}
+    </a>
+  </div>
+</Card>
