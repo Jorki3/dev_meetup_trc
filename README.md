@@ -11,7 +11,7 @@ Laguna Dev es una comunidad en línea para programadores y profesionales de la t
 ## Instalación y Configuración
 1. Clona el repositorio: `git clone https://github.com/tu-usuario/dev_meetup_trc.git`
 2. Instala las dependencias: npm install
-Inicia el proyecto: npm start
+3. Inicia el proyecto: npm run dev
 ## Contribuir
 1. Haz un fork del repositorio
 2. Crea una rama para tu feature o fix: `git checkout -b mi-rama`
