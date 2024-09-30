@@ -22,6 +22,35 @@ const { Content } = await render(event);
 ---
 
 <Layout title={title}>
+  <div class="flex flex-row">
+    <div>
+      <a href="/events" class="flex">
+        <span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M5 12l14 0"></path><path d="M5 12l6 6"></path><path
+              d="M5 12l6 -6"></path></svg
+          >
+        </span>
+        Regresar
+      </a>
+    </div>
+
+    <div class="flex-1">
+      <h1 class="text-xl sm:text-2xl text-center font-black mb-4">{title}</h1>
+    </div>
+  </div>
+
   <div class="flex flex-col-reverse lg:flex-row lg:space-x-4 w-full">
     <aside class="flex-1">
       <img
