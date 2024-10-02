@@ -1,5 +1,14 @@
 ---
+import Card from "../components/Card.astro";
+import Hero from "../components/Hero.astro";
 import Layout from "../layouts/Layout.astro";
+import * as AboutContent from "../content/about/about.md";
+
+const { Content } = AboutContent;
 ---
 
-<Layout title="Nosotros" />
+<Layout title="Inicio">
+  <Card classes="px-4 mx-auto prose prose-invert lg:prose-lg">
+    <Content />
+  </Card>
+</Layout>
