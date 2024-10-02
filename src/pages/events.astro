@@ -6,9 +6,6 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 const events = await getCollection("events");
-// const sortedEvents = events.sort(
-//   (a, b) => new Date(b.data.date) - new Date(a.data.date)
-// );
 ---
 
 <Layout title="Eventos">
