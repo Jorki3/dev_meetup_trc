@@ -15,7 +15,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
       provider: provider as Provider,
       options: {
         // redirectTo: "http://localhost:4321/api/auth/callback"
-        redirectTo: "https://siqkplfbcdzxqygddkaf.supabase.co/auth/v1/callback",
+        redirectTo: "https://dev-meetup-trc.barbagecode.com/api/auth/callback",
       },
     });
 
