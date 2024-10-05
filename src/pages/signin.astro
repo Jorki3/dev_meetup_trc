@@ -1,6 +1,8 @@
 ---
 import AuthLayout from "../layouts/AuthLayout.astro";
 
+export const prerender = false;
+
 const { cookies, redirect } = Astro;
 
 const accessToken = cookies.get("sb-access-token");
