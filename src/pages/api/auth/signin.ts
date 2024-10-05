@@ -14,9 +14,8 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: provider as Provider,
       options: {
-        redirectTo: import.meta.env.DEV
-          ? "http://localhost:4321/api/auth/callback"
-          : "https://dev-meetup-trc.barbagecode.com/api/auth/callback",
+        // redirectTo: "http://localhost:4321/api/auth/callback"
+        redirectTo: "https://dev-meetup-trc.barbagecode.com/api/auth/callback",
       },
     });
 
