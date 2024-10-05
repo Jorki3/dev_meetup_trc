@@ -11,6 +11,7 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
   const { data, error } = await supabase.auth.exchangeCodeForSession(authCode);
 
   if (error) {
+    console.log("Error during exchangeCodeForSession in callback.ts:", error); // Log del error
     return new Response(error.message, { status: 500 });
   }
 
