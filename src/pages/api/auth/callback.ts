@@ -5,7 +5,7 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
   const authCode = url.searchParams.get("code");
 
   if (!authCode) {
-    return new Response("No se proporcionó ningún código", { status: 400 });
+    return new Response("No code provided", { status: 400 });
   }
 
   const { data, error } = await supabase.auth.exchangeCodeForSession(authCode);

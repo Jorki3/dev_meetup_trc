@@ -4,18 +4,19 @@ import type { Provider } from "@supabase/supabase-js";
 
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   const formData = await request.formData();
-
   const email = formData.get("email")?.toString();
   const password = formData.get("password")?.toString();
   const provider = formData.get("provider")?.toString();
 
-  const validProviders = ["github"];
+  const validProviders = ["google", "github", "discord"];
 
   if (provider && validProviders.includes(provider)) {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: provider as Provider,
       options: {
-        redirectTo: "https://dev-meetup-trc.barbagecode.com/api/auth/callback",
+        redirectTo: import.meta.env.DEV
+          ? "http://localhost:4321/api/auth/callback"
+          : "https://dev-meetup-trc.barbagecode.com/api/auth/callback",
       },
     });
 
@@ -27,9 +28,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   }
 
   if (!email || !password) {
-    return new Response("Correo electrónico y contraseña obligatorios", {
-      status: 400,
-    });
+    return new Response("Email and password are required", { status: 400 });
   }
 
   const { data, error } = await supabase.auth.signInWithPassword({
