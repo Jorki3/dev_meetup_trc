@@ -1,6 +1,15 @@
 ---
 import Nav from "./Nav.astro";
 import NavItem from "./NavItem.astro";
+import { supabase } from "../lib/supabase";
+
+const {
+  data: { session },
+  error,
+} = await supabase.auth.getSession();
+
+const user = session?.user;
+const displayName = user?.user_metadata?.display_name;
 ---
 
 <div>
@@ -17,7 +26,16 @@ import NavItem from "./NavItem.astro";
         link="https://chat.whatsapp.com/Lrdy2KsIrza8Qc2iR96E3S"
         text="Unete"
       />
-      <NavItem link="/signin" text="Login" />
+
+      {!displayName ? <NavItem link="/signin" text="Login" /> : ""}
+
+      {
+        displayName ? (
+          <NavItem link="/dashboard" text={`Hola ${displayName}`} />
+        ) : (
+          ""
+        )
+      }
     </Nav>
   </header>
 </div>
