@@ -32,11 +32,16 @@ export default async function handler(
         res.end(JSON.stringify(responseData));
       });
     } catch (error) {
+      let errorMessage = "Unknown error";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+
       res.writeHead(400, {
         ...corsHeaders,
         "Content-Type": "application/json",
       });
-      res.end(JSON.stringify({ error: error.message }));
+      res.end(JSON.stringify({ error: errorMessage }));
     }
   }
 }
