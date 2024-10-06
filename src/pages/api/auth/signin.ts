@@ -1,8 +1,13 @@
+import { corsHeaders } from "../_shared/cors";
 import type { APIRoute } from "astro";
 import { supabase } from "../../../lib/supabase";
 import type { Provider } from "@supabase/supabase-js";
 
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
+  if (request.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
+  }
+
   const formData = await request.formData();
   const email = formData.get("email")?.toString();
   const password = formData.get("password")?.toString();
@@ -21,14 +26,26 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
 
     if (error) {
       console.log("OAuth Error:", error);
-      return new Response(error.message, { status: 500 });
+      return new Response(error.message, {
+        status: 500,
+        headers: corsHeaders,
+      });
     }
 
-    return redirect(data.url);
+    return new Response(null, {
+      status: 302,
+      headers: {
+        ...corsHeaders,
+        Location: data.url,
+      },
+    });
   }
 
   if (!email || !password) {
-    return new Response("Email and password are required", { status: 400 });
+    return new Response("Email and password are required", {
+      status: 400,
+      headers: corsHeaders,
+    });
   }
 
   const { data, error } = await supabase.auth.signInWithPassword({
@@ -37,15 +54,21 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   });
 
   if (error) {
-    return new Response(error.message, { status: 500 });
+    return new Response(error.message, {
+      status: 500,
+      headers: corsHeaders,
+    });
   }
 
   const { access_token, refresh_token } = data.session;
-  cookies.set("sb-access-token", access_token, {
-    path: "/",
+  cookies.set("sb-access-token", access_token, { path: "/" });
+  cookies.set("sb-refresh-token", refresh_token, { path: "/" });
+
+  return new Response(null, {
+    status: 302,
+    headers: {
+      ...corsHeaders,
+      Location: "/dashboard",
+    },
   });
-  cookies.set("sb-refresh-token", refresh_token, {
-    path: "/",
-  });
-  return redirect("/dashboard");
 };
