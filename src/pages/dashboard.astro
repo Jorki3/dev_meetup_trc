@@ -33,7 +33,7 @@ const display_name = data?.user?.user_metadata?.display_name;
 <Layout title="panel de control">
   <h1>Bienvenido {display_name}</h1>
   <p>Estamos felices de verte aquí</p>
-  <form action="/api/auth/signout">
+  <form action="/api/auth/signout" method="POST">
     <button type="submit">Cerrar sesión</button>
   </form>
 </Layout>
