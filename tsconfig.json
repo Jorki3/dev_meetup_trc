@@ -3,9 +3,9 @@
   "compilerOptions": {
     "typeRoots": [
       "./node_modules/@types",
-      "./@types" // Asegúrate de incluir esta línea
+      "./@types"
     ]
   },
-  "include": ["src/**/*", "@types/**/*"], // Incluye tu carpeta @types
+  "include": ["src/**/*", "@types/**/*", "@types"],
   "exclude": ["node_modules"]
 }
