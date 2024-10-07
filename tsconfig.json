@@ -1,11 +1,3 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "compilerOptions": {
-    "typeRoots": [
-      "./node_modules/@types",
-      "./@types" // Asegúrate de incluir esta línea
-    ]
-  },
-  "include": ["src/**/*", "@types/**/*"], // Incluye tu carpeta @types
-  "exclude": ["node_modules"]
+  "extends": "astro/tsconfigs/strict"
 }
