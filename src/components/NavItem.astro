@@ -1,0 +1,27 @@
+---
+const { link, text } = Astro.props;
+const currentUrl = Astro.url.pathname;
+const isActive = currentUrl === link;
+---
+
+<a
+  class={`px-4
+    py-2
+    text-2xl
+    text-zinc-300
+    block
+    hover:ring-1
+    hover:ring-indigo-600
+    hover:text-indigo-600
+    rounded-lg
+    transition
+    ease-in-out
+    hover:ease-in
+    hover:animate-pulse
+    hover:-translate-y-1
+    hover:cursor-pointer
+    ${isActive ? "ring-2 ring-indigo-600 text-indigo-600" : ""}`}
+  href={link}
+>
+  {text}
+</a>
